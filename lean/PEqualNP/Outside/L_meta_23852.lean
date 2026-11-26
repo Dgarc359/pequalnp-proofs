@@ -1,0 +1,11 @@
+import Mathlib
+import PEqualNP.Defs
+
+open PEqualNP.CircuitLowerBounds PEqualNP.MetaComplexity PEqualNP.Represents
+
+theorem PEqualNP.Outside.L_meta_23852 : PEqualNP.Represents.RepSizeAtMost (fun (u : Fin 4) (v : Fin 6) => (1881579 : ℕ).testBit (6 * u.val + v.val)) 10 := by
+  let C : Circuit := ⟨[⟨.or, [0, 6]⟩, ⟨.or, [8, 10]⟩, ⟨.or, [2, 11]⟩, ⟨.or, [1, 7]⟩, ⟨.or, [4, 5]⟩, ⟨.and, [12, 13]⟩, ⟨.or, [3, 9]⟩, ⟨.and, [10, 16]⟩, ⟨.or, [14, 17]⟩, ⟨.or, [15, 18]⟩], 19⟩
+  refine ⟨C, ?_, by decide, by decide⟩
+  intro g hg
+  simp only [C, List.mem_cons, List.not_mem_nil, or_false] at hg
+  rcases hg with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> simp
